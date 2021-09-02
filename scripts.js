@@ -1,4 +1,4 @@
-
+// call all id 
 const error = document.getElementById('error');
 const totalResults = document.getElementById('totalResult');
 const bookContainer = document.getElementById('book-container');
@@ -8,7 +8,7 @@ const searchBook = () =>{
   const searchResult = document.getElementById('search-field')
   const searchText = searchResult.value;
 
-  //clear data
+  //clear data 
   searchResult.value= '';
   error.innerText ='';
   totalResults.innerText = '';
