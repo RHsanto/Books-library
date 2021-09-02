@@ -8,7 +8,7 @@ const searchBook = () =>{
   const searchResult = document.getElementById('search-field')
   const searchText = searchResult.value;
 
-  //clear data 
+  //clear all data 
   searchResult.value= '';
   error.innerText ='';
   totalResults.innerText = '';
@@ -33,7 +33,7 @@ else{
 // display book result and details  
 const displySearchResult = (books,totalBooks) => {
 
-  // not fount message
+  // not found message
    if(books.length === 0){
    error.innerHTML = ` <h3 class= "text-danger text-center" > Result not found </h3>`;
   }
