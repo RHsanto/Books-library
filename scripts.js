@@ -53,7 +53,7 @@ totalResults.innerHTML = `<p class =" text-center my-5 border p-5 w-50 mx-auto">
                     div.classList.add('col');
                         div.innerHTML = `
                          <div class="card ">
-                        <img src= "https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="Not Found">
+                        <img src= "https://covers.openlibrary.org/b/id/${book.cover_i === undefined ? '10675600' : book.cover_i}-M.jpg" class="card-img-top" alt="Not Found">
                       <div class="card-body">
                      <h5 class="card-title">${book.title}</h5>
                     <p> <strong> Author </strong>  : ${book.author_name? book.author_name[ 0] : 'Not Found'}  <p>
