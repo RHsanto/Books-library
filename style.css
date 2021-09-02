@@ -1,0 +1,12 @@
+#book-container{
+display: grid;
+grid-template-columns: repeat(4,300px);
+grid-gap: 30px;
+margin: 0px 350px;
+
+}
+.col{
+border-radius: 20px;
+box-shadow: 5px 10px 18px #888888;
+
+}

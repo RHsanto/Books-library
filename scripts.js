@@ -1,56 +1,70 @@
+
+const error = document.getElementById('error');
+const totalResults = document.getElementById('totalResult');
+const bookContainer = document.getElementById('book-container');
+
 const searchBook = () =>{
-
+  
   const searchResult = document.getElementById('search-field')
-  const searText = searchResult.value;
+  const searchText = searchResult.value;
+
+  //clear data
   searchResult.value= '';
+  error.innerText ='';
+  totalResults.innerText = '';
+  bookContainer.textContent ='';
+  // e
+  if(searchText ===''){
+    error.innerHTML = ` <h3 class= "text-danger text-center" > This field is  Empety </h3>`;
+    totalResults.innerText = '';
+    bookContainer.textContent ='';
+  }
 
-  const url = `https://openlibrary.org/search.json?q=${searText}`
-  fetch(url)
-  .then(response => response.json())
-  .then(data => displySearchResult(data.docs))
-  .catch(error =>{
-    
-    document.getElementById('error').innerHTML = `<h2 class =" text-danger text-center"> some went is wrong try again later !!! </h2>`
-  })
-
+else{
+  const url = `https://openlibrary.org/search.json?q=${searchText}`
+    fetch(url)
+    .then(response => response.json())
+    .then(data => displySearchResult(data.docs,data.numFound))
+}
 }
 
-// display book result and details 
 
-const displySearchResult = books => {
 
-   console.log(books)
+// display book result and details  
+const displySearchResult = (books,totalBooks) => {
+  console.log(books,totalBooks)
 
- const bookContainer = document.getElementById('book-container');
-   bookContainer.textContent ='';
+   if(books.length === 0){
+   error.innerHTML = ` <h3 class= "text-danger text-center" > Result not found </h3>`;
+   
+  }
 
-for(const book of books){
+  else{
+totalResults.innerHTML = `<p class =" text-center my-5 border p-5 w-50 mx-auto"> Showing <strong> ${books.length} </strong> results of <strong>${totalBooks} </strong>`
+}
 
-  const div = document.createElement('div');
-  div.classList.add('card');
-  div.innerHTML = `
-  <div>
-  <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg" alt="" srcset="">
-  <h3> Title : ${book.title}  </h3>
-  <h4> Author : ${book.author_name}  </h4>
-  <h4> Publisher : ${book.publisher}  </h4>
-  <h5> First publish year: ${book.first_publish_year}  </h5>
-  </div>
-  `
 
+   const bookContainer = document.getElementById('book-container');
+       bookContainer.textContent ='';
+      
+           books.forEach(book=>{
+                const div = document.createElement('div');
+                    div.classList.add('col');
+                        div.innerHTML = `
+                         <div class="cards ">
+                        <img src= "https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="Not Found">
+                      <div class="card-body">
+                     <h5 class="card-title">${book.title}</h5>
+                    <p> <strong> Author </strong>  : ${book.author_name? book.author_name[ 0] : 'Not Found'}  <p>
+                  <p> <strong> Publisher </strong>  : ${book.publisher? book.publisher[0]:'Not Found'}  </p>
+                  <p> First published in  <strong> ${book.first_publish_year? book.first_publish_year : 'Not Found' } </strong></p>
+                     </div>
+                          </div> `
+
+  
 bookContainer.appendChild(div)
 
-
-
-
- }
-
-
-
-
-
-
-
+ })
 
 }
 
@@ -63,18 +77,7 @@ bookContainer.appendChild(div)
 
 
 
-//   const div = document.createElement('div');
-//   div.classList.add('card');
-//   div.innerHTML = `
-  
-//   <h2> Title : ${books.title}  </h2>
-//   <h2> First publish year: ${books.first_publish_year}  </h2>
-//   <h2> Author : ${books.author_name}  </h2>
-//   <h2> Publisher : ${books.publisher}  </h2>
-  
-//   `
 
-// bookContainer.appendChild(div)
 
 
 
