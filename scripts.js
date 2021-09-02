@@ -40,13 +40,13 @@ const displySearchResult = (books,totalBooks) => {
 
   // total result here
   else{
-totalResults.innerHTML = `<p class =" text-center my-5 border p-5 w-50 mx-auto"> Showing <strong> ${books.length} </strong> results of <strong>${totalBooks} </strong>`
+totalResults.innerHTML = `<p class =" text-center my-5 border p-5 w-50 mx-auto"> Showing <strong> ${books.slice(0,20).length} </strong> results of <strong>${totalBooks} </strong>`
 }
 
 // book container here
  const bookContainer = document.getElementById('book-container');
        bookContainer.textContent ='';
-           books.forEach(book=>{
+           books.slice(0,20).forEach(book=>{
 
              // creat a new div
                 const div = document.createElement('div');
