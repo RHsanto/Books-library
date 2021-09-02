@@ -3,8 +3,8 @@ const error = document.getElementById('error');
 const totalResults = document.getElementById('totalResult');
 const bookContainer = document.getElementById('book-container');
 
+// search button onCkick here
 const searchBook = () =>{
-  
   const searchResult = document.getElementById('search-field')
   const searchText = searchResult.value;
 
@@ -16,7 +16,7 @@ const searchBook = () =>{
 
   // empty message
   if(searchText ===''){
-    error.innerHTML = ` <h3 class= "text-danger text-center" > This field is  Empty </h3>`;
+    error.innerHTML = ` <h3 class= "text-danger text-center" > This field is  Empty !!!!!!! </h3>`;
     totalResults.innerText = '';
     bookContainer.textContent ='';
   }
